@@ -8,6 +8,7 @@
 export const COMPANY = {
 	brand: 'Mergen Interactive',
 	controller: 'Mustafa Kanlı',
+	// Yalnızca hukuki metinlerde (veri sorumlusunun kimliği); tanıtım metinlerinde şehir geçmez.
 	city: { tr: 'Antalya, Türkiye', en: 'Antalya, Türkiye' },
 	email: 'info@mergeninteractive.com',
 	site: 'https://mergeninteractive.com',

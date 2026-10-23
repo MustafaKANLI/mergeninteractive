@@ -68,8 +68,8 @@ function HomePage() {
 					en: 'Mergen Interactive | Mobile App Studio: RecipeLink, FlickList, Mergen Studio',
 				})}
 				description={t({
-					tr: 'Antalya’daki bağımsız mobil uygulama stüdyosu Mergen Interactive; tarif kaydetme uygulaması RecipeLink, dizi takip uygulaması FlickList ve yapay zekâ tasarım aracı Mergen Studio’yu geliştirir.',
-					en: 'Mergen Interactive is an independent mobile app studio in Antalya, Türkiye, making RecipeLink (recipe saver), FlickList (TV show tracker) and Mergen Studio (AI design tool).',
+					tr: 'Bağımsız mobil uygulama stüdyosu Mergen Interactive; tarif kaydetme uygulaması RecipeLink, dizi takip uygulaması FlickList ve yapay zekâ tasarım aracı Mergen Studio’yu geliştirir.',
+					en: 'Mergen Interactive is an independent mobile app studio making RecipeLink (recipe saver), FlickList (TV show tracker) and Mergen Studio (AI design tool).',
 				})}
 				jsonLd={[
 					ORGANIZATION,
@@ -159,8 +159,8 @@ function HomePage() {
 						</h2>
 						<p className="mx-auto max-w-2xl text-gray-400">
 							{t({
-								tr: 'Antalya’dan, uygulamalarını fikirden mağazaya kendisi yapan bağımsız bir stüdyo.',
-								en: 'An independent studio from Antalya, Türkiye, building its own apps from idea to store.',
+								tr: 'Uygulamalarını fikirden mağazaya kendisi yapan bağımsız bir stüdyo.',
+								en: 'An independent studio building its own apps from idea to store.',
 							})}
 						</p>
 					</Reveal>

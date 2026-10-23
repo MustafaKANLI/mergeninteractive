@@ -24,8 +24,8 @@ function AboutPage() {
 			<Seo
 				title={t({ tr: 'Hakkımızda · Mergen Interactive', en: 'About · Mergen Interactive' })}
 				description={t({
-					tr: 'Mergen Interactive, Mustafa Kanlı’nın Antalya’da kurduğu bağımsız mobil uygulama stüdyosudur: RecipeLink, FlickList, Mergen Studio ve PomoTails.',
-					en: 'Mergen Interactive is an independent mobile app studio founded by Mustafa Kanlı in Antalya, Türkiye: RecipeLink, FlickList, Mergen Studio and PomoTails.',
+					tr: 'Mergen Interactive, Mustafa Kanlı’nın kurduğu bağımsız mobil uygulama stüdyosudur: RecipeLink, FlickList, Mergen Studio ve PomoTails.',
+					en: 'Mergen Interactive is an independent mobile app studio founded by Mustafa Kanlı: RecipeLink, FlickList, Mergen Studio and PomoTails.',
 				})}
 				jsonLd={[{ '@type': 'AboutPage', name: COMPANY.brand, url: `${COMPANY.site}${localizePath('/about', lang)}`, about: ORGANIZATION }]}
 			/>
@@ -41,8 +41,8 @@ function AboutPage() {
 					<div className="animate-rise space-y-5 text-left text-lg leading-relaxed text-gray-400 [animation-delay:150ms] md:text-center">
 						<p>
 							{t({
-								tr: `${COMPANY.brand}, ${COMPANY.controller} tarafından Antalya'da kurulmuş bağımsız bir uygulama stüdyosudur. Fikirden mağazaya kadar tasarım, geliştirme ve yayını aynı elde yürütüyoruz.`,
-								en: `${COMPANY.brand} is an independent app studio founded by ${COMPANY.controller} in Antalya. We handle design, development and release in one place, from idea to store.`,
+								tr: `${COMPANY.brand}, ${COMPANY.controller} tarafından kurulmuş bağımsız bir uygulama stüdyosudur. Fikirden mağazaya kadar tasarım, geliştirme ve yayını aynı elde yürütüyoruz.`,
+								en: `${COMPANY.brand} is an independent app studio founded by ${COMPANY.controller}. We handle design, development and release in one place, from idea to store.`,
 							})}
 						</p>
 						<p>

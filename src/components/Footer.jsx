@@ -33,8 +33,8 @@ function Footer() {
 						</div>
 						<p className="text-sm leading-relaxed text-gray-400">
 							{t({
-								tr: 'Antalya\'dan bağımsız bir uygulama stüdyosu. Günlük hayatı kolaylaştıran mobil ve web uygulamaları geliştiriyoruz.',
-								en: 'An independent app studio from Antalya, building mobile and web apps that make everyday life easier.',
+								tr: 'Bağımsız bir uygulama stüdyosu. Günlük hayatı kolaylaştıran mobil ve web uygulamaları geliştiriyoruz.',
+								en: 'An independent app studio building mobile and web apps that make everyday life easier.',
 							})}
 						</p>
 					</div>
@@ -85,7 +85,6 @@ function Footer() {
 							</span>
 							<span className="break-all text-sm font-medium">{COMPANY.email}</span>
 						</a>
-						<p className="mt-4 text-sm text-gray-500">{t(COMPANY.city)}</p>
 					</div>
 				</div>
 

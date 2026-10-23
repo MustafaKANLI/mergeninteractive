@@ -90,7 +90,7 @@ const appBlock = (app, lang) => {
 
 const llms = `# ${COMPANY.brand}
 
-> ${COMPANY.brand} is an independent mobile app studio in Antalya, Türkiye, run by ${COMPANY.controller}. It makes RecipeLink (free recipe saver and meal planner for recipes found on Instagram, TikTok and YouTube), FlickList (free TV show, movie and anime tracker, a TV Time alternative), Mergen Studio (AI design tool for social media, ad and app store visuals) and PomoTails (pomodoro focus timer with a virtual cat, coming soon). Contact: ${COMPANY.email}
+> ${COMPANY.brand} is an independent mobile app studio run by ${COMPANY.controller}. It makes RecipeLink (free recipe saver and meal planner for recipes found on Instagram, TikTok and YouTube), FlickList (free TV show, movie and anime tracker, a TV Time alternative), Mergen Studio (AI design tool for social media, ad and app store visuals) and PomoTails (pomodoro focus timer with a virtual cat, coming soon). Contact: ${COMPANY.email}
 
 ## Apps
 

@@ -53,5 +53,5 @@ export const ORGANIZATION = {
 	logo: `${COMPANY.site}/favicon.svg`,
 	email: COMPANY.email,
 	founder: { '@type': 'Person', name: COMPANY.controller },
-	address: { '@type': 'PostalAddress', addressLocality: 'Antalya', addressCountry: 'TR' },
+	address: { '@type': 'PostalAddress', addressCountry: 'TR' },
 };
