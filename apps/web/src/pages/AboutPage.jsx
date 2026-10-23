@@ -1,111 +1,98 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Code2, Database, Cloud, Smartphone, Globe, Shield, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Code2, Database, Cloud, Smartphone, Globe, Shield } from 'lucide-react';
+import { useLang } from '@/i18n/LanguageContext';
+import { APPS, COMPANY } from '@/content/site';
 
 function AboutPage() {
-  const technologies = [
-    { name: 'C# / .NET Core', icon: Code2 },
-    { name: 'React Native', icon: Smartphone },
-    { name: 'Supabase', icon: Database },
-    { name: 'AWS Cloud', icon: Cloud },
-    { name: 'Google Cloud', icon: Globe },
-    { name: 'Security', icon: Shield }
-  ];
+	const { t } = useLang();
 
-  const projects = [
-    {
-      title: 'RecipeLink',
-      category: 'Topluluk Platformu',
-      description: 'Yemek tutkunlarını buluşturan, tarif paylaşımı ve sosyal etkileşim odaklı mobil uygulama.',
-    },
-    {
-      title: 'BudgetApp',
-      category: 'Fintech',
-      description: 'Kişisel finans yönetimi, harcama takibi ve akıllı bütçeleme asistanı.',
-    },
-    {
-      title: 'Evcil Hayvan Takip',
-      category: 'IoT / Mobil',
-      description: 'GPS entegrasyonlu, gerçek zamanlı konum takibi ve sağlık izleme sistemi.',
-    }
-  ];
+	const technologies = [
+		{ name: 'React Native & Expo', icon: Smartphone },
+		{ name: 'TypeScript', icon: Code2 },
+		{ name: 'Next.js', icon: Globe },
+		{ name: 'Supabase', icon: Database },
+		{ name: 'Cloud', icon: Cloud },
+		{ name: { tr: 'Güvenlik', en: 'Security' }, icon: Shield },
+	];
 
-  return (
-    <div className="min-h-screen bg-mergen-dark">
-      <Helmet>
-        <title>Hakkımızda - Mergen Interactive</title>
-        <meta
-          name="description"
-          content="Mergen Interactive: Dijital dönüşümde stratejik çözüm ortağınız. Modern yazılım teknolojileri ve uzman kadro."
-        />
-      </Helmet>
+	return (
+		<div className="min-h-screen bg-mergen-dark">
+			<Helmet>
+				<title>{t({ tr: 'Hakkımızda', en: 'About' })} · Mergen Interactive</title>
+				<meta
+					name="description"
+					content={t({
+						tr: 'Mergen Interactive, Mustafa Kanlı tarafından Antalya\'da kurulmuş bağımsız bir uygulama stüdyosudur.',
+						en: 'Mergen Interactive is an independent app studio founded by Mustafa Kanlı in Antalya.',
+					})}
+				/>
+			</Helmet>
 
-      {/* Header */}
-      <section className="pt-32 pb-16 px-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-mistik-gradient opacity-20 pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
-            Dijital Dönüşümde <br />
-            <span className="text-mergen-accent text-glow">Stratejik Çözüm Ortağınız</span>
-          </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.2s'}}>
-            Mergen Interactive olarak, teknolojiyi sadece bir araç olarak değil, işinizi ileriye taşıyan bir güç olarak görüyoruz. 
-            Karmaşık problemleri zarif kod yapılarıyla çözüyor, sürdürülebilir ve ölçeklenebilir sistemler inşa ediyoruz.
-          </p>
-        </div>
-      </section>
+			<section className="relative overflow-hidden px-6 pb-16 pt-32">
+				<div className="pointer-events-none absolute inset-0 bg-mistik-gradient opacity-20" />
+				<div className="relative z-10 mx-auto max-w-4xl text-center">
+					<h1 className="mb-6 animate-fade-in text-4xl font-bold text-white md:text-6xl">
+						{t({ tr: 'Küçük stüdyo,', en: 'A small studio,' })}
+						<br />
+						<span className="text-mergen-accent text-glow">{t({ tr: 'özenli uygulamalar', en: 'carefully made apps' })}</span>
+					</h1>
+					<div className="space-y-5 text-left text-lg leading-relaxed text-gray-400 md:text-center">
+						<p>
+							{t({
+								tr: `${COMPANY.brand}, ${COMPANY.controller} tarafından Antalya'da kurulmuş bağımsız bir uygulama stüdyosudur. Fikirden mağazaya kadar tasarım, geliştirme ve yayını aynı elde yürütüyoruz.`,
+								en: `${COMPANY.brand} is an independent app studio founded by ${COMPANY.controller} in Antalya. We handle design, development and release in one place, from idea to store.`,
+							})}
+						</p>
+						<p>
+							{t({
+								tr: 'Amacımız; her biri tek bir işi iyi yapan, sade, hızlı ve kullanıcının verisine saygılı uygulamalar yapmak. Uygulamalarımızı gerçek kullanım verisine ve geri bildirime bakarak sürekli geliştiriyoruz.',
+								en: 'Our goal is to make simple, fast apps that each do one job well and respect people\'s data. We keep improving them based on real usage and feedback.',
+							})}
+						</p>
+					</div>
+				</div>
+			</section>
 
-      {/* Tech Stack */}
-      <section className="py-20 bg-mergen-teal-midnight/50">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-2xl font-bold text-white mb-12 text-center flex items-center justify-center">
-            <span className="w-8 h-1 bg-mergen-accent mr-4 rounded-full"></span>
-            Teknoloji Yığınımız
-            <span className="w-8 h-1 bg-mergen-accent ml-4 rounded-full"></span>
-          </h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {technologies.map((tech, idx) => (
-              <div key={idx} className="flex flex-col items-center justify-center group">
-                <div className="w-20 h-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:border-mergen-accent/50 group-hover:bg-mergen-accent/10 transition-all duration-300 shadow-lg group-hover:shadow-mergen-accent/20">
-                  <tech.icon className="w-10 h-10 text-gray-400 group-hover:text-mergen-accent transition-colors" />
-                </div>
-                <span className="text-gray-400 font-medium group-hover:text-white transition-colors">{tech.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+			<section className="bg-mergen-teal-midnight/50 py-20">
+				<div className="mx-auto max-w-7xl px-6">
+					<h2 className="mb-12 flex items-center justify-center text-center text-2xl font-bold text-white">
+						<span className="mr-4 h-1 w-8 rounded-full bg-mergen-accent" />
+						{t({ tr: 'Kullandığımız teknolojiler', en: 'What we build with' })}
+						<span className="ml-4 h-1 w-8 rounded-full bg-mergen-accent" />
+					</h2>
+					<div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
+						{technologies.map((tech) => (
+							<div key={t(tech.name)} className="group flex flex-col items-center justify-center text-center">
+								<div className="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg transition-all duration-300 group-hover:border-mergen-accent/50 group-hover:bg-mergen-accent/10">
+									<tech.icon className="h-10 w-10 text-gray-400 transition-colors group-hover:text-mergen-accent" />
+								</div>
+								<span className="font-medium text-gray-400 transition-colors group-hover:text-white">{t(tech.name)}</span>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
 
-      {/* Projects */}
-      <section className="py-24 px-6 relative">
-        <div className="absolute right-0 bottom-0 w-1/3 h-full bg-gradient-to-l from-mergen-teal-primary/10 to-transparent pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <h2 className="text-3xl font-bold text-white mb-12">Öne Çıkan Projeler</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {projects.map((project, idx) => (
-              <div key={idx} className="glass-card p-8 flex flex-col h-full group">
-                <div className="mb-6 flex justify-between items-start">
-                  <span className="px-3 py-1 bg-mergen-accent/20 text-mergen-accent text-xs font-bold uppercase tracking-wider rounded-full border border-mergen-accent/20">
-                    {project.category}
-                  </span>
-                  <ArrowUpRight className="w-5 h-5 text-gray-500 group-hover:text-mergen-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-mergen-accent transition-colors">{project.title}</h3>
-                <p className="text-gray-400 leading-relaxed mb-6 flex-grow">
-                  {project.description}
-                </p>
-                <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-mergen-accent w-0 group-hover:w-full transition-all duration-700 ease-out"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+			<section className="relative px-6 py-24">
+				<div className="mx-auto max-w-7xl">
+					<h2 className="mb-10 text-3xl font-bold text-white">{t({ tr: 'Uygulamalar', en: 'Apps' })}</h2>
+					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+						{APPS.map((app) => (
+							<Link key={app.id} to={`/#${app.id}`} className="glass-card group flex flex-col p-6">
+								<span className="mb-3 text-xs font-bold uppercase tracking-wider text-mergen-accent">
+									{app.status === 'live' ? t({ tr: 'Yayında', en: 'Live' }) : t({ tr: 'Yakında', en: 'Coming soon' })} · {t(app.platform)}
+								</span>
+								<h3 className="mb-2 text-xl font-bold text-white transition-colors group-hover:text-mergen-accent">{app.name}</h3>
+								<p className="text-sm leading-relaxed text-gray-400">{t(app.tagline)}</p>
+							</Link>
+						))}
+					</div>
+				</div>
+			</section>
+		</div>
+	);
 }
 
 export default AboutPage;

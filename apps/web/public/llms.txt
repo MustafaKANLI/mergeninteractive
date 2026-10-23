@@ -1,5 +1,11 @@
+# Mergen Interactive
+
+> Independent app studio from Antalya, Türkiye (Mustafa Kanlı). Apps: RecipeLink (save recipe videos, meal planning), FlickList (TV show and movie tracking), Mergen Studio (AI brand visuals, web), PomoTails (pomodoro + virtual pet, coming soon). Contact: info@mergeninteractive.com
+
 ## Pages
-- [Hakkımızda - Mergen Interactive](/about): Mergen Interactive: Dijital dönüşümde stratejik çözüm ortağınız. Modern yazılım teknolojileri ve uzman kadro.
-- [Kapsamlı Gizlilik Politikası - Mergen Interactive](/privacy): Mergen Interactive Kapsamlı Gizlilik Politikası, Kullanım Koşulları ve Hukuki Sorumluluk Reddi Sözleşmesi
-- [KVKK Aydınlatma Metni - Mergen Interactive](/kvkk): Kişisel Verilerin Korunması ve İşlenmesi Hakkında Aydınlatma Metni
-- [Mergen Interactive - Modern Solutions, Precision Engineering](/): Mergen Interactive, yüksek performanslı mobil uygulamalar ve ölçeklenebilir yazılım çözümleri geliştiren inovasyon odaklı bir teknoloji stüdyosudur.
+- [Home / Ana sayfa](/): apps overview and contact
+- [About / Hakkımızda](/about)
+- [Privacy Policy / Gizlilik Politikası](/privacy): how all apps and this site process personal data (TR/EN, add ?lang=en)
+- [KVKK Information Notice / KVKK Aydınlatma Metni](/kvkk): notice under Turkish Law No. 6698
+- [Terms of Use / Kullanım Koşulları](/terms): terms and EULA for all apps
+- [Account & data deletion / Hesap ve veri silme](/delete-account)
