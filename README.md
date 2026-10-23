@@ -40,7 +40,7 @@ Alan adı: Vercel → Settings → Domains → `mergeninteractive.com` ve `www` 
 ## Kurallar
 
 - Site üçüncü taraf kaynak (yazı tipi, görsel, betik, analitik) yüklemez; gizlilik politikası bunu söylüyor. Eklenecekse önce politika ve çerez onayı.
-- Büyük `filter: blur` / `backdrop-filter` kullanma: Chrome'da kaydırma sonrası çift yazı ve boş alan çizim hatası yapıyordu; parlama için `radial-gradient` kullan.
+- Büyük `filter: blur` / `backdrop-filter` kullanma: Chrome'da kaydırma sonrası çift yazı ve boş alan çizim hatası yapıyordu; parlama için `radial-gradient` kullan. Tek istisna üst menünün buzlu camı (`.glass-nav`).
 
 ## Uygulamaların kullandığı adresler (değiştirme)
 

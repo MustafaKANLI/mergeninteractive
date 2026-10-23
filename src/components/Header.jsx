@@ -49,7 +49,11 @@ function Header() {
 	const isActive = (path) => !path.includes('#') && location.pathname === path;
 
 	return (
-		<header className={`sticky top-0 z-50 transition-all duration-300 print:hidden ${isScrolled || isMenuOpen ? 'border-b border-white/10 bg-mergen-dark/95 py-3' : 'bg-transparent py-5'}`}>
+		<header
+			className={`sticky top-0 z-50 border-b transition-[padding,background-color,border-color,box-shadow] duration-300 print:hidden ${
+				isScrolled || isMenuOpen ? 'glass-nav py-3' : 'border-transparent bg-transparent py-5'
+			}`}
+		>
 			<div className="mx-auto max-w-7xl px-6">
 				<nav className="flex items-center justify-between">
 					<Link to="/" className="group flex items-center space-x-3" aria-label="Mergen Interactive">

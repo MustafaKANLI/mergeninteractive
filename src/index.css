@@ -51,8 +51,21 @@
 }
 
 @layer utilities {
-  /* backdrop-filter bilerek yok: sayfadaki çok sayıda bulanıklık Chrome'da kaydırma sonrası
-     çift yazı/boş alan çizim hatalarına yol açıyordu; koyu zemin üstünde görsel farkı yok. */
+  /* backdrop-filter yalnızca üst menüde (.glass-nav): sayfadaki çok sayıda bulanıklık (+ gradyan yazıda text-shadow)
+     Chrome'da kaydırma sonrası çift yazı/boş alan çizim hatası yapıyordu. Kart ve rozetlerde kullanma. */
+  .glass-nav {
+    background-color: rgba(1, 22, 30, 0.97);
+    border-bottom: 1px solid rgba(10, 147, 150, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(10, 147, 150, 0.08);
+  }
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-nav {
+      background-color: rgba(18, 69, 89, 0.45);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      backdrop-filter: blur(18px) saturate(160%);
+    }
+  }
+
   .glass-effect {
     background-color: rgba(18, 69, 89, 0.4);
     border-bottom: 1px solid rgba(10, 147, 150, 0.3);
