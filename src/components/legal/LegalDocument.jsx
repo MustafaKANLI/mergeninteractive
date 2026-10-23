@@ -83,7 +83,7 @@ export default function LegalDocument({ doc }) {
 
 			<header className="relative overflow-hidden px-6 pb-10 pt-28">
 				<div className="pointer-events-none absolute inset-0 bg-mistik-gradient opacity-20" />
-				<div className="relative mx-auto max-w-6xl">
+				<div className="relative mx-auto max-w-6xl animate-rise">
 					<p className="mb-3 text-sm font-medium tracking-wide text-mergen-accent">{d.kicker}</p>
 					<h1 className="text-3xl font-bold text-white md:text-5xl">{d.title}</h1>
 					<div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-400">

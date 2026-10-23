@@ -108,3 +108,69 @@
     background: hsl(var(--mergen-glow-cyan));
   }
 }
+
+/* ---------- Animasyonlar ---------- */
+
+/* Kaydırınca görünen öğeler (Reveal bileşeni .is-visible ekler). */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Kartlarda imleci izleyen ışık: --mx/--my, MainLayout'taki tek dinleyiciyle güncellenir. */
+.glass-card {
+  position: relative;
+  isolation: isolate;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%), rgba(10, 147, 150, 0.16), transparent 65%);
+}
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+/* Okuma ilerleme çizgisi */
+.scroll-progress {
+  transform-origin: 0 50%;
+  transform: scaleX(var(--progress, 0));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-rise,
+  .animate-shimmer,
+  .animate-kenburns,
+  .animate-float,
+  .animate-fade-in,
+  .animate-bounce {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media print {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+

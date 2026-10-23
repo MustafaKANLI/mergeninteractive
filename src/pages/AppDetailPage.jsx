@@ -4,6 +4,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Mail, ShieldCheck, Trash2, Users } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
 import { APPS, COMPANY, findApp } from '@/content/site';
+import Reveal from '@/components/Reveal';
 
 // Uygulama detay sayfası: /apps/:id. İçerik src/content/site.js'teki APPS'ten gelir.
 function AppDetailPage() {
@@ -38,8 +39,10 @@ function AppDetailPage() {
 					</Link>
 
 					<div className="flex flex-col gap-8 md:flex-row md:items-center">
-						<img src={app.icon} alt="" width="128" height="128" className="h-28 w-28 flex-none rounded-[28px] shadow-2xl ring-1 ring-white/10 md:h-32 md:w-32" />
-						<div className="min-w-0">
+						<div className="flex-none animate-rise">
+							<img src={app.icon} alt="" width="128" height="128" className="h-28 w-28 animate-float rounded-[28px] shadow-2xl ring-1 ring-white/10 md:h-32 md:w-32" />
+						</div>
+						<div className="min-w-0 animate-rise [animation-delay:150ms]">
 							<div className="mb-3 flex flex-wrap items-center gap-3">
 								<span
 									className={`rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wider ${
@@ -79,32 +82,32 @@ function AppDetailPage() {
 			{/* Tanıtım */}
 			<section className="px-6 pb-16">
 				<div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.4fr_1fr]">
-					<div className="space-y-5 text-lg leading-relaxed text-gray-300">
+					<Reveal className="space-y-5 text-lg leading-relaxed text-gray-300">
 						{t(app.about).map((para) => (
 							<p key={para}>{para}</p>
 						))}
-					</div>
-					<aside className="glass-card h-fit p-6">
+					</Reveal>
+					<Reveal as="aside" delay={120} className="glass-card h-fit p-6">
 						<div className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-mergen-accent">
 							<Users className="h-4 w-4" />
 							{t({ tr: 'Kimler için', en: 'Who it’s for' })}
 						</div>
 						<p className="leading-relaxed text-gray-300">{t(app.audience)}</p>
-					</aside>
+					</Reveal>
 				</div>
 			</section>
 
 			{/* Özellikler */}
 			<section className="bg-mergen-teal-midnight/40 px-6 py-20">
 				<div className="mx-auto max-w-6xl">
-					<h2 className="mb-10 text-3xl font-bold text-white">{t({ tr: 'Öne çıkanlar', en: 'Highlights' })}</h2>
+					<Reveal as="h2" className="mb-10 text-3xl font-bold text-white">{t({ tr: 'Öne çıkanlar', en: 'Highlights' })}</Reveal>
 					<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-						{app.features.map((f) => (
-							<div key={f.title.en} className="glass-card p-6">
+						{app.features.map((f, i) => (
+							<Reveal key={f.title.en} delay={(i % 3) * 100} className="glass-card p-6 hover:-translate-y-1">
 								<div className="mb-4 h-1 w-10 rounded-full" style={{ backgroundColor: app.accent }} />
 								<h3 className="mb-2 text-lg font-bold text-white">{t(f.title)}</h3>
 								<p className="leading-relaxed text-gray-400">{t(f.text)}</p>
-							</div>
+							</Reveal>
 						))}
 					</div>
 					{app.credit && <p className="mt-8 text-sm text-gray-500">{t(app.credit)}</p>}
@@ -114,7 +117,7 @@ function AppDetailPage() {
 			{/* Gizlilik ve destek */}
 			<section className="px-6 py-20">
 				<div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.4fr_1fr]">
-					<div className="rounded-2xl border border-white/10 bg-white/[0.04] p-7">
+					<Reveal className="rounded-2xl border border-white/10 bg-white/[0.04] p-7">
 						<div className="mb-5 flex items-center gap-3">
 							<ShieldCheck className="h-6 w-6 text-mergen-accent" />
 							<h2 className="text-xl font-bold text-white">{t({ tr: 'Gizlilik özeti', en: 'Privacy at a glance' })}</h2>
@@ -130,8 +133,8 @@ function AppDetailPage() {
 						<Link to="/privacy#uygulamalar" className="mt-6 inline-block text-sm font-medium text-mergen-accent underline-offset-2 hover:underline">
 							{t({ tr: 'Gizlilik Politikası’nın tamamı', en: 'Read the full Privacy Policy' })} →
 						</Link>
-					</div>
-					<div className="flex flex-col gap-4">
+					</Reveal>
+					<Reveal delay={120} className="flex flex-col gap-4">
 						<a href={supportHref} className="glass-card flex items-center gap-4 p-6">
 							<Mail className="h-6 w-6 flex-none text-mergen-accent" />
 							<div>
@@ -149,7 +152,7 @@ function AppDetailPage() {
 						<Link to="/terms" className="px-2 text-sm text-gray-500 underline-offset-2 hover:text-mergen-accent hover:underline">
 							{t({ tr: 'Kullanım Koşulları', en: 'Terms of Use' })}
 						</Link>
-					</div>
+					</Reveal>
 				</div>
 			</section>
 
@@ -158,14 +161,16 @@ function AppDetailPage() {
 				<div className="mx-auto max-w-6xl">
 					<h2 className="mb-8 text-2xl font-bold text-white">{t({ tr: 'Diğer uygulamalarımız', en: 'More from us' })}</h2>
 					<div className="grid gap-5 sm:grid-cols-3">
-						{others.map((o) => (
-							<Link key={o.id} to={`/apps/${o.id}`} className="glass-card group flex items-center gap-4 p-5">
+						{others.map((o, i) => (
+							<Reveal key={o.id} delay={i * 100}>
+							<Link to={`/apps/${o.id}`} className="glass-card group flex h-full items-center gap-4 p-5">
 								<img src={o.icon} alt="" width="56" height="56" className="h-14 w-14 flex-none rounded-2xl ring-1 ring-white/10" />
 								<div className="min-w-0">
 									<p className="font-bold text-white transition-colors group-hover:text-mergen-accent">{o.name}</p>
 									<p className="truncate text-sm text-gray-400">{t(o.platform)}</p>
 								</div>
 							</Link>
+							</Reveal>
 						))}
 					</div>
 				</div>

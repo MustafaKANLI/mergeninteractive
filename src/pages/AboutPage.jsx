@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Code2, Database, Cloud, Smartphone, Globe, Shield } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
 import { APPS, COMPANY } from '@/content/site';
+import Reveal from '@/components/Reveal';
 
 function AboutPage() {
 	const { t } = useLang();
@@ -33,12 +34,12 @@ function AboutPage() {
 			<section className="relative overflow-hidden px-6 pb-16 pt-32">
 				<div className="pointer-events-none absolute inset-0 bg-mistik-gradient opacity-20" />
 				<div className="relative z-10 mx-auto max-w-4xl text-center">
-					<h1 className="mb-6 animate-fade-in text-4xl font-bold text-white md:text-6xl">
+					<h1 className="mb-6 animate-rise text-4xl font-bold text-white md:text-6xl">
 						{t({ tr: 'Küçük stüdyo,', en: 'A small studio,' })}
 						<br />
 						<span className="text-mergen-accent text-glow">{t({ tr: 'özenli uygulamalar', en: 'carefully made apps' })}</span>
 					</h1>
-					<div className="space-y-5 text-left text-lg leading-relaxed text-gray-400 md:text-center">
+					<div className="animate-rise space-y-5 text-left text-lg leading-relaxed text-gray-400 [animation-delay:150ms] md:text-center">
 						<p>
 							{t({
 								tr: `${COMPANY.brand}, ${COMPANY.controller} tarafından Antalya'da kurulmuş bağımsız bir uygulama stüdyosudur. Fikirden mağazaya kadar tasarım, geliştirme ve yayını aynı elde yürütüyoruz.`,
@@ -63,13 +64,13 @@ function AboutPage() {
 						<span className="ml-4 h-1 w-8 rounded-full bg-mergen-accent" />
 					</h2>
 					<div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
-						{technologies.map((tech) => (
-							<div key={t(tech.name)} className="group flex flex-col items-center justify-center text-center">
+						{technologies.map((tech, i) => (
+							<Reveal key={t(tech.name)} delay={i * 70} className="group flex flex-col items-center justify-center text-center">
 								<div className="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg transition-all duration-300 group-hover:border-mergen-accent/50 group-hover:bg-mergen-accent/10">
 									<tech.icon className="h-10 w-10 text-gray-400 transition-colors group-hover:text-mergen-accent" />
 								</div>
 								<span className="font-medium text-gray-400 transition-colors group-hover:text-white">{t(tech.name)}</span>
-							</div>
+							</Reveal>
 						))}
 					</div>
 				</div>
@@ -79,14 +80,17 @@ function AboutPage() {
 				<div className="mx-auto max-w-7xl">
 					<h2 className="mb-10 text-3xl font-bold text-white">{t({ tr: 'Uygulamalar', en: 'Apps' })}</h2>
 					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-						{APPS.map((app) => (
-							<Link key={app.id} to={`/apps/${app.id}`} className="glass-card group flex flex-col p-6">
+						{APPS.map((app, i) => (
+							<Reveal key={app.id} delay={i * 100}>
+							<Link to={`/apps/${app.id}`} className="glass-card group flex h-full flex-col p-6 hover:-translate-y-1">
+								<img src={app.icon} alt="" width="48" height="48" className="mb-4 h-12 w-12 rounded-xl ring-1 ring-white/10" />
 								<span className="mb-3 text-xs font-bold uppercase tracking-wider text-mergen-accent">
 									{app.status === 'live' ? t({ tr: 'Yayında', en: 'Live' }) : t({ tr: 'Yakında', en: 'Coming soon' })} · {t(app.platform)}
 								</span>
 								<h3 className="mb-2 text-xl font-bold text-white transition-colors group-hover:text-mergen-accent">{app.name}</h3>
 								<p className="text-sm leading-relaxed text-gray-400">{t(app.tagline)}</p>
 							</Link>
+							</Reveal>
 						))}
 					</div>
 				</div>

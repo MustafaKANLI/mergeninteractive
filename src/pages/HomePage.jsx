@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Cpu, Database, Cloud, ChevronRight, ExternalLink } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
 import { APPS, COMPANY } from '@/content/site';
+import Reveal from '@/components/Reveal';
 
 function StatusBadge({ status }) {
 	const { t } = useLang();
@@ -66,7 +67,7 @@ function HomePage() {
 			<section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
 				<div className="absolute inset-0 z-0">
 					{/* Görsel sitenin içinde (Unsplash lisansı): ziyaretçinin IP'si üçüncü tarafa gitmez */}
-					<img src="/hero.jpg" alt="" className="h-full w-full object-cover" />
+					<img src="/hero.jpg" alt="" className="h-full w-full animate-kenburns object-cover will-change-transform" />
 					<div className="absolute inset-0 bg-mistik-gradient opacity-90 mix-blend-multiply"></div>
 					<div className="absolute inset-0 bg-black/40"></div>
 				</div>
@@ -75,25 +76,30 @@ function HomePage() {
 				<div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-96 w-[min(1100px,100vw)] -translate-x-1/2 -translate-y-1/2" style={{ background: 'radial-gradient(closest-side, rgba(10,147,150,0.30), transparent)' }} />
 
 				<div className="relative z-10 mx-auto max-w-7xl px-6 text-center">
-					<div className="animate-fade-in space-y-8">
-						<div className="glass-effect mb-4 inline-block rounded-full border border-mergen-accent/30 px-4 py-1.5">
+					<div className="space-y-8">
+						<div className="glass-effect mb-4 inline-block animate-rise rounded-full border border-mergen-accent/30 px-4 py-1.5">
 							<span className="text-sm font-medium uppercase tracking-wider text-mergen-accent">Future Ready Technology</span>
 						</div>
 
 						<h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl" style={{ textShadow: '0 2px 24px rgba(0,0,0,.45)' }}>
-							Modern Solutions,
+							<span className="inline-block animate-rise [animation-delay:120ms]">Modern Solutions,</span>
 							<br />
-							<span className="bg-gradient-to-r from-mergen-accent to-teal-200 bg-clip-text text-transparent [text-shadow:none]">Precision Engineering.</span>
+							<span className="inline-block animate-rise [animation-delay:260ms]">
+								{/* Işık kayması: yalnızca background-position (filter yok) */}
+								<span className="animate-shimmer bg-[linear-gradient(90deg,#0A9396,#99f6e4,#0A9396,#5eead4,#0A9396)] bg-[length:200%_auto] bg-clip-text text-transparent [text-shadow:none]">
+									Precision Engineering.
+								</span>
+							</span>
 						</h1>
 
-						<p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300 md:text-xl">
+						<p className="mx-auto max-w-3xl animate-rise text-lg leading-relaxed text-gray-300 [animation-delay:420ms] md:text-xl">
 							{t({
 								tr: 'Mergen Interactive, yüksek performanslı mobil uygulamalar ve ölçeklenebilir yazılım çözümleri geliştiren inovasyon odaklı bir teknoloji stüdyosudur. Fikirlerinizi en güncel teknolojilerle dijital gerçeğe dönüştürüyoruz.',
 								en: 'Mergen Interactive is an innovation-driven technology studio building high-performance mobile apps and scalable software. We turn ideas into digital reality with the latest technology.',
 							})}
 						</p>
 
-						<div className="flex flex-col justify-center gap-6 pt-8 sm:flex-row">
+						<div className="flex animate-rise flex-col justify-center gap-6 pt-8 [animation-delay:560ms] sm:flex-row">
 							<a
 								href="#apps"
 								className="btn-glow group inline-flex items-center justify-center rounded-lg border border-transparent bg-mergen-accent px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-mergen-teal-secondary"
@@ -123,7 +129,7 @@ function HomePage() {
 				<div className="pointer-events-none absolute right-0 top-0 h-[800px] w-[800px] -translate-y-1/2 translate-x-1/2" style={{ background: 'radial-gradient(closest-side, rgba(0,95,115,0.30), transparent)' }}></div>
 
 				<div className="relative z-10 mx-auto max-w-7xl px-6">
-					<div className="mb-16 text-center">
+					<Reveal className="mb-16 text-center">
 						<h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
 							{t({ tr: 'Neden', en: 'Why' })} <span className="text-mergen-accent">Mergen?</span>
 						</h2>
@@ -133,11 +139,11 @@ function HomePage() {
 								en: 'We bring technology and craft together, aiming for excellence in every line of code.',
 							})}
 						</p>
-					</div>
+					</Reveal>
 
 					<div className="grid gap-8 md:grid-cols-3">
-						{highlights.map((item) => (
-							<div key={item.title.en} className="glass-card group p-8 hover:-translate-y-2">
+						{highlights.map((item, i) => (
+							<Reveal key={item.title.en} delay={i * 120} className="glass-card group p-8 hover:-translate-y-2">
 								<div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-mergen-accent/20 bg-mergen-teal-primary/40 shadow-lg shadow-mergen-dark/50 transition-all duration-300 group-hover:border-mergen-accent/60 group-hover:bg-mergen-accent/20">
 									<item.icon className="h-8 w-8 text-mergen-accent transition-transform duration-300 group-hover:scale-110" />
 								</div>
@@ -146,7 +152,7 @@ function HomePage() {
 								<a href="#apps" className="mt-6 flex translate-x-[-10px] items-center text-sm font-medium text-mergen-accent opacity-0 transition-opacity duration-300 group-hover:translate-x-0 group-hover:opacity-100">
 									{t({ tr: 'Uygulamaları gör', en: 'See the apps' })} <ChevronRight className="ml-1 h-4 w-4" />
 								</a>
-							</div>
+							</Reveal>
 						))}
 					</div>
 				</div>
@@ -156,18 +162,18 @@ function HomePage() {
 			<section id="apps" className="relative scroll-mt-24 overflow-hidden bg-mergen-teal-midnight/40 py-24">
 				<div className="pointer-events-none absolute right-0 top-0 h-[800px] w-[800px] -translate-y-1/2 translate-x-1/2" style={{ background: 'radial-gradient(closest-side, rgba(0,95,115,0.30), transparent)' }} />
 				<div className="relative z-10 mx-auto max-w-7xl px-6">
-					<div className="mb-14 text-center">
+					<Reveal className="mb-14 text-center">
 						<h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
 							{t({ tr: 'Uygulamalarımız', en: 'Our apps' })}
 						</h2>
 						<p className="mx-auto max-w-2xl text-gray-400">
 							{t({ tr: 'Her biri tek bir işi iyi yapmak için tasarlandı.', en: 'Each one is designed to do one job well.' })}
 						</p>
-					</div>
+					</Reveal>
 
 					<div className="grid gap-6 md:grid-cols-2">
-						{APPS.map((app) => (
-							<article key={app.id} id={app.id} className="glass-card flex scroll-mt-28 flex-col p-8">
+						{APPS.map((app, i) => (
+							<Reveal as="article" key={app.id} id={app.id} delay={(i % 2) * 120} className="glass-card flex scroll-mt-28 flex-col p-8 hover:-translate-y-1">
 								<div className="mb-5 flex items-start justify-between gap-4">
 									<Link to={`/apps/${app.id}`} className="group flex items-center gap-4">
 										<img src={app.icon} alt="" width="56" height="56" className="h-14 w-14 flex-none rounded-2xl ring-1 ring-white/10" />
@@ -207,7 +213,7 @@ function HomePage() {
 										{t({ tr: 'Detaylar', en: 'Details' })} <ArrowRight className="h-3.5 w-3.5" />
 									</Link>
 								</div>
-							</article>
+							</Reveal>
 						))}
 					</div>
 				</div>
@@ -216,7 +222,7 @@ function HomePage() {
 			{/* CTA Section */}
 			<section id="contact" className="relative overflow-hidden py-24">
 				<div className="absolute inset-0 bg-mistik-gradient opacity-50"></div>
-				<div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+				<Reveal className="relative z-10 mx-auto max-w-5xl px-6 text-center">
 					<h2 className="mb-8 text-3xl font-bold text-white md:text-5xl">
 						{t({ tr: 'Projenizi Hayata Geçirmeye Hazır Mısınız?', en: 'Ready to bring your project to life?' })}
 					</h2>
@@ -233,7 +239,7 @@ function HomePage() {
 						{t({ tr: 'İletişime Geçin', en: 'Contact us' })}
 						<ArrowRight className="ml-2 h-5 w-5" />
 					</a>
-				</div>
+				</Reveal>
 			</section>
 		</div>
 	);

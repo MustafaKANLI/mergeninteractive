@@ -78,11 +78,32 @@ module.exports = {
 					'0%': { opacity: '0', transform: 'translateY(10px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' },
 				},
+				// Yalnızca transform/opacity/background-position: filter yok (Chrome çizim hatası)
+				rise: {
+					'0%': { opacity: '0', transform: 'translateY(28px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
+				shimmer: {
+					'0%': { backgroundPosition: '0% 50%' },
+					'100%': { backgroundPosition: '200% 50%' },
+				},
+				kenburns: {
+					'0%': { transform: 'scale(1) translate3d(0,0,0)' },
+					'100%': { transform: 'scale(1.1) translate3d(-1.5%,-1%,0)' },
+				},
+				float: {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out forwards',
+				rise: 'rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both',
+				shimmer: 'shimmer 6s linear infinite',
+				kenburns: 'kenburns 24s ease-in-out infinite alternate',
+				float: 'float 6s ease-in-out infinite',
 			},
 		},
 	},
