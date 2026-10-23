@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import Seo from '@/components/Seo';
 import { useLang } from '@/i18n/LanguageContext';
 import RichText from './RichText';
 
@@ -76,10 +76,7 @@ export default function LegalDocument({ doc }) {
 
 	return (
 		<div className="min-h-screen bg-mergen-dark">
-			<Helmet>
-				<title>{`${d.title} · Mergen Interactive`}</title>
-				<meta name="description" content={d.description} />
-			</Helmet>
+			<Seo title={`${d.title} · Mergen Interactive`} description={d.description} />
 
 			<header className="relative overflow-hidden px-6 pb-10 pt-28">
 				<div className="pointer-events-none absolute inset-0 bg-mistik-gradient opacity-20" />

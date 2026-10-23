@@ -1,10 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { Code2, Database, Cloud, Smartphone, Globe, Shield } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
 import { APPS, COMPANY } from '@/content/site';
 import Reveal from '@/components/Reveal';
+import Seo, { ORGANIZATION } from '@/components/Seo';
 
 function AboutPage() {
 	const { t } = useLang();
@@ -20,16 +20,14 @@ function AboutPage() {
 
 	return (
 		<div className="min-h-screen bg-mergen-dark">
-			<Helmet>
-				<title>{t({ tr: 'Hakkımızda', en: 'About' })} · Mergen Interactive</title>
-				<meta
-					name="description"
-					content={t({
-						tr: 'Mergen Interactive, Mustafa Kanlı tarafından Antalya\'da kurulmuş bağımsız bir uygulama stüdyosudur.',
-						en: 'Mergen Interactive is an independent app studio founded by Mustafa Kanlı in Antalya.',
-					})}
-				/>
-			</Helmet>
+			<Seo
+				title={t({ tr: 'Hakkımızda · Mergen Interactive', en: 'About · Mergen Interactive' })}
+				description={t({
+					tr: 'Mergen Interactive, Mustafa Kanlı’nın Antalya’da kurduğu bağımsız mobil uygulama stüdyosudur: RecipeLink, FlickList, Mergen Studio ve PomoTails.',
+					en: 'Mergen Interactive is an independent mobile app studio founded by Mustafa Kanlı in Antalya, Türkiye: RecipeLink, FlickList, Mergen Studio and PomoTails.',
+				})}
+				jsonLd={[{ '@type': 'AboutPage', name: COMPANY.brand, url: `${COMPANY.site}/about`, about: ORGANIZATION }]}
+			/>
 
 			<section className="relative overflow-hidden px-6 pb-16 pt-32">
 				<div className="pointer-events-none absolute inset-0 bg-mistik-gradient opacity-20" />

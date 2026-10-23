@@ -1,10 +1,35 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "rewrites": [
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/gizlilik",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/kullanim-kosullari",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/eula",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/hesap-silme",
+      "destination": "/delete-account",
+      "permanent": true
     }
   ],
   "headers": [

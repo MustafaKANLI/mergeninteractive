@@ -12,29 +12,39 @@ import DeleteAccountPage from '@/pages/DeleteAccountPage';
 import AppDetailPage from '@/pages/AppDetailPage';
 
 // /privacy ve /kvkk adresleri yayındaki uygulamalarda kullanılıyor: değiştirme.
-function App() {
+// Router dışarıdan gelir: tarayıcıda BrowserRouter, build'deki ön-render'da StaticRouter (src/entry-server.jsx).
+export function AppRoutes() {
 	return (
-		<LanguageProvider>
+		<>
+			<ScrollToTop />
+			<Routes>
+				<Route path="/" element={<MainLayout />}>
+					<Route index element={<HomePage />} />
+					<Route path="about" element={<AboutPage />} />
+					<Route path="privacy" element={<PrivacyPage />} />
+					<Route path="kvkk" element={<KVKKPage />} />
+					<Route path="terms" element={<TermsPage />} />
+					<Route path="delete-account" element={<DeleteAccountPage />} />
+					<Route path="apps/:id" element={<AppDetailPage />} />
+					{/* Sık yazılan diğer adresler */}
+					<Route path="gizlilik" element={<Navigate to="/privacy" replace />} />
+					<Route path="privacy-policy" element={<Navigate to="/privacy" replace />} />
+					<Route path="kullanim-kosullari" element={<Navigate to="/terms" replace />} />
+					<Route path="eula" element={<Navigate to="/terms" replace />} />
+					<Route path="hesap-silme" element={<Navigate to="/delete-account" replace />} />
+					<Route path="*" element={<Navigate to="/" replace />} />
+				</Route>
+			</Routes>
+		</>
+	);
+}
+
+// prerendered: sayfa build'de HTML'e çevrildiyse ilk çizim sunucudaki gibi Türkçe olur, dil tercihi hemen ardından uygulanır.
+function App({ prerendered = false }) {
+	return (
+		<LanguageProvider prerendered={prerendered}>
 			<BrowserRouter>
-				<ScrollToTop />
-				<Routes>
-					<Route path="/" element={<MainLayout />}>
-						<Route index element={<HomePage />} />
-						<Route path="about" element={<AboutPage />} />
-						<Route path="privacy" element={<PrivacyPage />} />
-						<Route path="kvkk" element={<KVKKPage />} />
-						<Route path="terms" element={<TermsPage />} />
-						<Route path="delete-account" element={<DeleteAccountPage />} />
-						<Route path="apps/:id" element={<AppDetailPage />} />
-						{/* Sık yazılan diğer adresler */}
-						<Route path="gizlilik" element={<Navigate to="/privacy" replace />} />
-						<Route path="privacy-policy" element={<Navigate to="/privacy" replace />} />
-						<Route path="kullanim-kosullari" element={<Navigate to="/terms" replace />} />
-						<Route path="eula" element={<Navigate to="/terms" replace />} />
-						<Route path="hesap-silme" element={<Navigate to="/delete-account" replace />} />
-						<Route path="*" element={<Navigate to="/" replace />} />
-					</Route>
-				</Routes>
+				<AppRoutes />
 			</BrowserRouter>
 		</LanguageProvider>
 	);

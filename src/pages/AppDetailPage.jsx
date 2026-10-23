@@ -1,10 +1,45 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Mail, ShieldCheck, Trash2, Users } from 'lucide-react';
+import { ArrowLeft, ChevronDown, ExternalLink, Mail, ShieldCheck, Trash2, Users } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
 import { APPS, COMPANY, findApp } from '@/content/site';
 import Reveal from '@/components/Reveal';
+import Seo, { ORGANIZATION } from '@/components/Seo';
+
+// schema.org: uygulama kaydı, SSS ve sayfa yolu. Arama motorları ve yapay zekâ asistanları uygulamayı buradan tanır.
+function appJsonLd(app, t) {
+	const pageUrl = `${COMPANY.site}/apps/${app.id}`;
+	const software = {
+		'@type': app.schema.type,
+		name: app.storeName ?? app.name,
+		...(app.storeName ? { alternateName: app.name } : {}),
+		description: t(app.seo.description),
+		url: pageUrl,
+		image: `${COMPANY.site}${app.icon}`,
+		applicationCategory: app.schema.category,
+		operatingSystem: app.schema.os,
+		featureList: app.features.map((f) => t(f.title)),
+		publisher: ORGANIZATION,
+		...(app.links.length ? { sameAs: app.links.map((l) => l.href), installUrl: app.links.map((l) => l.href) } : {}),
+		...(app.schema.free ? { offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' } } : {}),
+	};
+	const faq = {
+		'@type': 'FAQPage',
+		mainEntity: app.faq.map((item) => ({
+			'@type': 'Question',
+			name: t(item.q),
+			acceptedAnswer: { '@type': 'Answer', text: t(item.a) },
+		})),
+	};
+	const breadcrumb = {
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: COMPANY.brand, item: `${COMPANY.site}/` },
+			{ '@type': 'ListItem', position: 2, name: app.name, item: pageUrl },
+		],
+	};
+	return [software, faq, breadcrumb];
+}
 
 // Uygulama detay sayfası: /apps/:id. İçerik src/content/site.js'teki APPS'ten gelir.
 function AppDetailPage() {
@@ -19,10 +54,7 @@ function AppDetailPage() {
 
 	return (
 		<div className="min-h-screen bg-mergen-dark">
-			<Helmet>
-				<title>{`${app.name} · Mergen Interactive`}</title>
-				<meta name="description" content={t(app.tagline)} />
-			</Helmet>
+			<Seo title={t(app.seo.title)} description={t(app.seo.description)} image={app.icon} jsonLd={appJsonLd(app, t)} />
 
 			{/* Hero */}
 			<section className="relative overflow-hidden px-6 pb-16 pt-24">
@@ -32,6 +64,8 @@ function AppDetailPage() {
 					className="pointer-events-none absolute -top-40 left-1/2 h-[30rem] w-[min(1100px,100vw)] -translate-x-1/2 opacity-30"
 					style={{ background: `radial-gradient(closest-side, ${app.accent}, transparent)` }}
 				/>
+				{/* Hero arka planı alttaki bölüme sert kenarla değil, yumuşakça geçsin */}
+				<div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-mergen-dark" />
 				<div className="relative mx-auto max-w-6xl">
 					<Link to="/#apps" className="mb-10 inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-mergen-accent">
 						<ArrowLeft className="h-4 w-4" />
@@ -80,8 +114,8 @@ function AppDetailPage() {
 			</section>
 
 			{/* Tanıtım */}
-			<section className="px-6 pb-16">
-				<div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.4fr_1fr]">
+			<section className="px-6 pb-20 pt-10">
+				<div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-start">
 					<Reveal className="space-y-5 text-lg leading-relaxed text-gray-300">
 						{t(app.about).map((para) => (
 							<p key={para}>{para}</p>
@@ -111,6 +145,26 @@ function AppDetailPage() {
 						))}
 					</div>
 					{app.credit && <p className="mt-8 text-sm text-gray-500">{t(app.credit)}</p>}
+				</div>
+			</section>
+
+			{/* Sık sorulanlar: sayfadaki metin JSON-LD'deki FAQPage ile birebir aynı olmalı */}
+			<section className="px-6 pt-20">
+				<div className="mx-auto max-w-4xl">
+					<Reveal as="h2" className="mb-8 text-3xl font-bold text-white">{t({ tr: 'Sık sorulan sorular', en: 'Frequently asked questions' })}</Reveal>
+					<div className="space-y-3">
+						{app.faq.map((item, i) => (
+							<Reveal key={item.q.en} delay={i * 80}>
+								<details className="group rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-5 open:bg-white/[0.06]" open={i === 0}>
+									<summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold text-white marker:hidden">
+										<h3>{t(item.q)}</h3>
+										<ChevronDown className="h-5 w-5 flex-none text-mergen-accent transition-transform group-open:rotate-180" />
+									</summary>
+									<p className="mt-3 leading-relaxed text-gray-300">{t(item.a)}</p>
+								</details>
+							</Reveal>
+						))}
+					</div>
 				</div>
 			</section>
 

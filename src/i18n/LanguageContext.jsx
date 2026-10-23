@@ -20,8 +20,13 @@ function initialLang() {
 	return (navigator.language || 'tr').toLowerCase().startsWith('tr') ? 'tr' : 'en';
 }
 
-export function LanguageProvider({ children }) {
-	const [lang, setLangState] = useState(initialLang);
+// prerendered: HTML build'de Türkçe üretildi; hydrate eşleşsin diye ilk çizim 'tr', tercih edilen dil hemen ardından.
+export function LanguageProvider({ children, prerendered = false }) {
+	const [lang, setLangState] = useState(() => (prerendered ? 'tr' : initialLang()));
+
+	useEffect(() => {
+		if (prerendered) setLangState(initialLang());
+	}, [prerendered]);
 
 	useEffect(() => {
 		document.documentElement.lang = lang;

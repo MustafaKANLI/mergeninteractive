@@ -1,10 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Cpu, Database, Cloud, ChevronRight, ExternalLink } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
 import { APPS, COMPANY } from '@/content/site';
 import Reveal from '@/components/Reveal';
+import Seo, { ORGANIZATION } from '@/components/Seo';
 
 function StatusBadge({ status }) {
 	const { t } = useLang();
@@ -52,16 +52,30 @@ function HomePage() {
 
 	return (
 		<div className="min-h-screen">
-			<Helmet>
-				<title>Mergen Interactive - Modern Solutions, Precision Engineering</title>
-				<meta
-					name="description"
-					content={t({
-						tr: 'Mergen Interactive, yüksek performanslı mobil uygulamalar ve ölçeklenebilir yazılım çözümleri geliştiren inovasyon odaklı bir teknoloji stüdyosudur.',
-						en: 'Mergen Interactive is an innovation-driven technology studio building high-performance mobile apps and scalable software.',
-					})}
-				/>
-			</Helmet>
+			<Seo
+				title={t({
+					tr: 'Mergen Interactive | Mobil Uygulama Stüdyosu: RecipeLink, FlickList, Mergen Studio',
+					en: 'Mergen Interactive | Mobile App Studio: RecipeLink, FlickList, Mergen Studio',
+				})}
+				description={t({
+					tr: 'Antalya’daki bağımsız mobil uygulama stüdyosu Mergen Interactive; tarif kaydetme uygulaması RecipeLink, dizi takip uygulaması FlickList ve yapay zekâ tasarım aracı Mergen Studio’yu geliştirir.',
+					en: 'Mergen Interactive is an independent mobile app studio in Antalya, Türkiye, making RecipeLink (recipe saver), FlickList (TV show tracker) and Mergen Studio (AI design tool).',
+				})}
+				jsonLd={[
+					ORGANIZATION,
+					{ '@type': 'WebSite', name: COMPANY.brand, url: `${COMPANY.site}/`, publisher: { '@id': ORGANIZATION['@id'] } },
+					{
+						'@type': 'ItemList',
+						name: t({ tr: 'Mergen Interactive uygulamaları', en: 'Apps by Mergen Interactive' }),
+						itemListElement: APPS.map((app, i) => ({
+							'@type': 'ListItem',
+							position: i + 1,
+							url: `${COMPANY.site}/apps/${app.id}`,
+							name: app.name,
+						})),
+					},
+				]}
+			/>
 
 			{/* Hero Section */}
 			<section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
