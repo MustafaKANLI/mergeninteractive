@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Mergen Interactive Premium Dark Theme */
+    --background: 180 100% 6%; /* Midnight Emerald #0a1f1f */
+    --foreground: 0 0% 98%;
+    
+    --card: 180 100% 9%; /* Deep Teal #002d2d */
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 180 100% 9%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 176 100% 29%; /* Glow Cyan #0A9396 */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 180 100% 9%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 180 52% 12%;
+    --muted-foreground: 180 10% 70%;
+    
+    --accent: 176 100% 29%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 176 100% 29%;
+    --input: 180 52% 15%;
+    --ring: 176 100% 29%;
+    --radius: 0.75rem;
+
+    /* Custom Palette Explicit Definitions */
+    --mergen-deep-teal: 180 100% 9%;
+    --mergen-midnight-emerald: 180 100% 6%;
+    --mergen-glow-cyan: 176 100% 29%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-white;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    background-color: rgba(18, 69, 89, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(10, 147, 150, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2), inset 0 0 15px rgba(10, 147, 150, 0.1);
+  }
+
+  .glassmorphism {
+    background: rgba(18, 69, 89, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(10, 147, 150, 0.2);
+  }
+  
+  .glass-card {
+    @apply glassmorphism rounded-xl shadow-lg transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    box-shadow: 0 10px 30px -10px rgba(10, 147, 150, 0.3);
+    border-color: rgba(10, 147, 150, 0.5);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 12px rgba(10, 147, 150, 0.6), 0 0 24px rgba(10, 147, 150, 0.3);
+  }
+  
+  .box-glow {
+    box-shadow: 0 0 15px rgba(10, 147, 150, 0.4), inset 0 0 15px rgba(10, 147, 150, 0.1);
+  }
+
+  .btn-glow {
+    box-shadow: 0 0 15px rgba(10, 147, 150, 0.3);
+  }
+  
+  .btn-glow:hover {
+    box-shadow: 0 0 25px rgba(10, 147, 150, 0.7);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--mergen-midnight-emerald));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--mergen-glow-cyan) / 0.5);
+    border-radius: 9999px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--mergen-glow-cyan));
+  }
+}

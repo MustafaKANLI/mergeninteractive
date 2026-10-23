@@ -1,0 +1,5 @@
+## Pages
+- [Hakkımızda - Mergen Interactive](/about): Mergen Interactive: Dijital dönüşümde stratejik çözüm ortağınız. Modern yazılım teknolojileri ve uzman kadro.
+- [Kapsamlı Gizlilik Politikası - Mergen Interactive](/privacy): Mergen Interactive Kapsamlı Gizlilik Politikası, Kullanım Koşulları ve Hukuki Sorumluluk Reddi Sözleşmesi
+- [KVKK Aydınlatma Metni - Mergen Interactive](/kvkk): Kişisel Verilerin Korunması ve İşlenmesi Hakkında Aydınlatma Metni
+- [Mergen Interactive - Modern Solutions, Precision Engineering](/): Mergen Interactive, yüksek performanslı mobil uygulamalar ve ölçeklenebilir yazılım çözümleri geliştiren inovasyon odaklı bir teknoloji stüdyosudur.
