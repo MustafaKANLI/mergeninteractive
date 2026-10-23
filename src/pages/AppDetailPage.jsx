@@ -1,14 +1,16 @@
 import React from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Link, { LocalNavigate } from '@/components/LocalLink';
 import { ArrowLeft, ChevronDown, ExternalLink, Mail, ShieldCheck, Trash2, Users } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
 import { APPS, COMPANY, findApp } from '@/content/site';
 import Reveal from '@/components/Reveal';
 import Seo, { ORGANIZATION } from '@/components/Seo';
+import { localizePath } from '@/i18n/paths';
 
 // schema.org: uygulama kaydı, SSS ve sayfa yolu. Arama motorları ve yapay zekâ asistanları uygulamayı buradan tanır.
-function appJsonLd(app, t) {
-	const pageUrl = `${COMPANY.site}/apps/${app.id}`;
+function appJsonLd(app, t, lang) {
+	const pageUrl = `${COMPANY.site}${localizePath(`/apps/${app.id}`, lang)}`;
 	const software = {
 		'@type': app.schema.type,
 		name: app.storeName ?? app.name,
@@ -34,7 +36,7 @@ function appJsonLd(app, t) {
 	const breadcrumb = {
 		'@type': 'BreadcrumbList',
 		itemListElement: [
-			{ '@type': 'ListItem', position: 1, name: COMPANY.brand, item: `${COMPANY.site}/` },
+			{ '@type': 'ListItem', position: 1, name: COMPANY.brand, item: `${COMPANY.site}${localizePath('/', lang)}` },
 			{ '@type': 'ListItem', position: 2, name: app.name, item: pageUrl },
 		],
 	};
@@ -44,9 +46,9 @@ function appJsonLd(app, t) {
 // Uygulama detay sayfası: /apps/:id. İçerik src/content/site.js'teki APPS'ten gelir.
 function AppDetailPage() {
 	const { id } = useParams();
-	const { t } = useLang();
+	const { t, lang } = useLang();
 	const app = findApp(id);
-	if (!app) return <Navigate to="/#apps" replace />;
+	if (!app) return <LocalNavigate to="/#apps" />;
 
 	const live = app.status === 'live';
 	const others = APPS.filter((a) => a.id !== app.id);
@@ -54,7 +56,7 @@ function AppDetailPage() {
 
 	return (
 		<div className="min-h-screen bg-mergen-dark">
-			<Seo title={t(app.seo.title)} description={t(app.seo.description)} image={app.icon} jsonLd={appJsonLd(app, t)} />
+			<Seo title={t(app.seo.title)} description={t(app.seo.description)} image={app.icon} jsonLd={appJsonLd(app, t, lang)} />
 
 			{/* Hero */}
 			<section className="relative overflow-hidden px-6 pb-16 pt-24">

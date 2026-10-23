@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Cpu, Database, Cloud, ChevronRight, ExternalLink } from 'lucide-react';
+import Link from '@/components/LocalLink';
+import { ArrowRight, ChevronRight, ExternalLink, Layers, MessageCircle, ShieldCheck, Smartphone } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
 import { APPS, COMPANY } from '@/content/site';
 import Reveal from '@/components/Reveal';
 import Seo, { ORGANIZATION } from '@/components/Seo';
+import { localizePath } from '@/i18n/paths';
 
 function StatusBadge({ status }) {
 	const { t } = useLang();
@@ -21,31 +22,40 @@ function StatusBadge({ status }) {
 }
 
 function HomePage() {
-	const { t } = useLang();
+	const { t, lang } = useLang();
 
+	// "Neden Mergen?": stüdyonun gerçekte nasıl çalıştığı. Abartılı slogan değil, doğrulanabilir şeyler yaz.
 	const highlights = [
 		{
-			icon: Cpu,
-			title: { tr: 'Performance First', en: 'Performance First' },
+			icon: Smartphone,
+			title: { tr: 'Kendi ürünlerimiz', en: 'Our own products' },
 			description: {
-				tr: 'React Native ve modern mimariyle optimize edilmiş, hızlı ve akıcı deneyimler.',
-				en: 'Fast, fluid experiences optimised with React Native and a modern architecture.',
+				tr: 'Müşteri işi yapan bir ajans değiliz. RecipeLink, FlickList, Mergen Studio ve PomoTails’i kendimiz tasarlıyor, geliştiriyor ve her gün kendimiz kullanıyoruz; bir şey can sıkıyorsa ilk biz fark ediyoruz.',
+				en: 'We are not an agency doing client work. We design, build and use RecipeLink, FlickList, Mergen Studio and PomoTails ourselves every day, so we are the first to notice when something is off.',
 			},
 		},
 		{
-			icon: Database,
-			title: { tr: 'Data-Driven Design', en: 'Data-Driven Design' },
+			icon: Layers,
+			title: { tr: 'Fikirden mağazaya tek elden', en: 'Idea to store, one pair of hands' },
 			description: {
-				tr: 'Kullanıcı alışkanlıklarını analiz ederek şekillendirilen sezgisel arayüzler.',
-				en: 'Intuitive interfaces shaped by understanding how people actually use them.',
+				tr: 'Arayüz tasarımı, React Native ile iOS ve Android, Supabase altyapısı, yapay zekâ özellikleri ve mağaza yayını aynı elde. Arada kaybolan bir şey yok, güncellemeler hızlı çıkıyor.',
+				en: 'Interface design, iOS and Android with React Native, the Supabase backend, AI features and store releases all happen in one place. Nothing gets lost in hand-offs, and updates ship fast.',
 			},
 		},
 		{
-			icon: Cloud,
-			title: { tr: 'Cloud Excellence', en: 'Cloud Excellence' },
+			icon: ShieldCheck,
+			title: { tr: 'Gizlilik baştan', en: 'Privacy from the start' },
 			description: {
-				tr: 'Supabase ve modern bulut çözümleriyle güvenli ve kesintisiz veri yönetimi.',
-				en: 'Secure, reliable data management with Supabase and modern cloud services.',
+				tr: 'Uygulamalar yalnızca işine yarayan veriyi ister; RecipeLink’te hesap açmadan başlarsın. Neyi neden işlediğimiz KVKK metinlerinde açıkça yazıyor, bu site çerez kullanmıyor.',
+				en: 'Our apps only ask for the data they need; you can start RecipeLink without an account. What we process and why is spelled out in our privacy notices, and this site uses no cookies.',
+			},
+		},
+		{
+			icon: MessageCircle,
+			title: { tr: 'Doğrudan geliştiriciye', en: 'Straight to the developer' },
+			description: {
+				tr: 'Yazdığın e-postayı uygulamayı geliştiren kişi okur. Güncellemeleri gelen geri bildirimlere ve e-posta gibi kişisel bilgi içermeyen kullanım verisine bakarak planlıyoruz.',
+				en: 'Your email is read by the person who builds the app. We plan updates around your feedback and usage data that contains no personal details such as your email.',
 			},
 		},
 	];
@@ -63,14 +73,14 @@ function HomePage() {
 				})}
 				jsonLd={[
 					ORGANIZATION,
-					{ '@type': 'WebSite', name: COMPANY.brand, url: `${COMPANY.site}/`, publisher: { '@id': ORGANIZATION['@id'] } },
+					{ '@type': 'WebSite', name: COMPANY.brand, url: `${COMPANY.site}${localizePath('/', lang)}`, inLanguage: lang, publisher: { '@id': ORGANIZATION['@id'] } },
 					{
 						'@type': 'ItemList',
 						name: t({ tr: 'Mergen Interactive uygulamaları', en: 'Apps by Mergen Interactive' }),
 						itemListElement: APPS.map((app, i) => ({
 							'@type': 'ListItem',
 							position: i + 1,
-							url: `${COMPANY.site}/apps/${app.id}`,
+							url: `${COMPANY.site}${localizePath(`/apps/${app.id}`, lang)}`,
 							name: app.name,
 						})),
 					},
@@ -149,15 +159,15 @@ function HomePage() {
 						</h2>
 						<p className="mx-auto max-w-2xl text-gray-400">
 							{t({
-								tr: 'Teknolojiyi sanatla buluşturuyoruz. Her satır kodda mükemmelliği hedefliyoruz.',
-								en: 'We bring technology and craft together, aiming for excellence in every line of code.',
+								tr: 'Antalya’dan, uygulamalarını fikirden mağazaya kendisi yapan bağımsız bir stüdyo.',
+								en: 'An independent studio from Antalya, Türkiye, building its own apps from idea to store.',
 							})}
 						</p>
 					</Reveal>
 
-					<div className="grid gap-8 md:grid-cols-3">
+					<div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 md:gap-8">
 						{highlights.map((item, i) => (
-							<Reveal key={item.title.en} delay={i * 120} className="glass-card group p-8 hover:-translate-y-2">
+							<Reveal key={item.title.en} delay={(i % 2) * 120} className="glass-card group p-8 hover:-translate-y-2">
 								<div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-mergen-accent/20 bg-mergen-teal-primary/40 shadow-lg shadow-mergen-dark/50 transition-all duration-300 group-hover:border-mergen-accent/60 group-hover:bg-mergen-accent/20">
 									<item.icon className="h-8 w-8 text-mergen-accent transition-transform duration-300 group-hover:scale-110" />
 								</div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { LocalNavigate } from '@/components/LocalLink';
 import ScrollToTop from '@/components/ScrollToTop';
 import MainLayout from '@/layouts/MainLayout';
 import { LanguageProvider } from '@/i18n/LanguageContext';
@@ -12,13 +13,14 @@ import DeleteAccountPage from '@/pages/DeleteAccountPage';
 import AppDetailPage from '@/pages/AppDetailPage';
 
 // /privacy ve /kvkk adresleri yayındaki uygulamalarda kullanılıyor: değiştirme.
-// Router dışarıdan gelir: tarayıcıda BrowserRouter, build'deki ön-render'da StaticRouter (src/entry-server.jsx).
+// Router ve LanguageProvider dışarıdan gelir: tarayıcıda BrowserRouter, build'deki ön-render'da StaticRouter (src/entry-server.jsx).
 export function AppRoutes() {
 	return (
 		<>
 			<ScrollToTop />
 			<Routes>
-				<Route path="/" element={<MainLayout />}>
+				{/* "/en?": aynı sayfalar Türkçe kökte ve İngilizce /en altında; düzen dil değişince yeniden kurulmaz */}
+				<Route path="/en?" element={<MainLayout />}>
 					<Route index element={<HomePage />} />
 					<Route path="about" element={<AboutPage />} />
 					<Route path="privacy" element={<PrivacyPage />} />
@@ -27,26 +29,25 @@ export function AppRoutes() {
 					<Route path="delete-account" element={<DeleteAccountPage />} />
 					<Route path="apps/:id" element={<AppDetailPage />} />
 					{/* Sık yazılan diğer adresler */}
-					<Route path="gizlilik" element={<Navigate to="/privacy" replace />} />
-					<Route path="privacy-policy" element={<Navigate to="/privacy" replace />} />
-					<Route path="kullanim-kosullari" element={<Navigate to="/terms" replace />} />
-					<Route path="eula" element={<Navigate to="/terms" replace />} />
-					<Route path="hesap-silme" element={<Navigate to="/delete-account" replace />} />
-					<Route path="*" element={<Navigate to="/" replace />} />
+					<Route path="gizlilik" element={<LocalNavigate to="/privacy" />} />
+					<Route path="privacy-policy" element={<LocalNavigate to="/privacy" />} />
+					<Route path="kullanim-kosullari" element={<LocalNavigate to="/terms" />} />
+					<Route path="eula" element={<LocalNavigate to="/terms" />} />
+					<Route path="hesap-silme" element={<LocalNavigate to="/delete-account" />} />
+					<Route path="*" element={<LocalNavigate to="/" />} />
 				</Route>
 			</Routes>
 		</>
 	);
 }
 
-// prerendered: sayfa build'de HTML'e çevrildiyse ilk çizim sunucudaki gibi Türkçe olur, dil tercihi hemen ardından uygulanır.
-function App({ prerendered = false }) {
+function App() {
 	return (
-		<LanguageProvider prerendered={prerendered}>
-			<BrowserRouter>
+		<BrowserRouter>
+			<LanguageProvider>
 				<AppRoutes />
-			</BrowserRouter>
-		</LanguageProvider>
+			</LanguageProvider>
+		</BrowserRouter>
 	);
 }
 

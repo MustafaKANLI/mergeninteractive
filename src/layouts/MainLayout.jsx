@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import LanguageHint from '@/components/LanguageHint';
 
 function MainLayout() {
 	const progressRef = useRef(null);
@@ -49,6 +50,7 @@ function MainLayout() {
 			</main>
 
 			<Footer />
+			<LanguageHint />
 		</div>
 	);
 }

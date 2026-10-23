@@ -1,63 +1,56 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { LANGS, langFromPath, localizePath, stripLang } from '@/i18n/paths';
 
-// Site dili: ?lang=tr|en (uygulamalar İngilizce metne doğrudan link verebilsin) → kayıtlı tercih →
-// tarayıcı dili. Türkçe dışındaki her tarayıcı İngilizce görür.
-const STORAGE_KEY = 'mi_lang';
-const SUPPORTED = ['tr', 'en'];
+// Site dili adresten gelir: /... Türkçe, /en/... İngilizce (arama motorları her dili ayrı sayfa olarak görsün).
+// Eski ?lang=en linkleri (yayındaki uygulamalar kullanıyor) doğru adrese taşınır; Vercel'de de aynı kural 308 ile çalışır.
+export const STORAGE_KEY = 'mi_lang';
 
-const LanguageContext = createContext({ lang: 'tr', setLang: () => {}, t: (v) => v?.tr ?? v });
+const LanguageContext = createContext({ lang: 'tr', setLang: () => {}, t: (v) => v?.tr ?? v, path: (to) => to });
 
-function initialLang() {
-	if (typeof window === 'undefined') return 'tr';
-	const fromUrl = new URLSearchParams(window.location.search).get('lang');
-	if (SUPPORTED.includes(fromUrl)) return fromUrl;
-	try {
-		const saved = window.localStorage.getItem(STORAGE_KEY);
-		if (SUPPORTED.includes(saved)) return saved;
-	} catch {
-		// depolama kapalı olabilir
-	}
-	return (navigator.language || 'tr').toLowerCase().startsWith('tr') ? 'tr' : 'en';
-}
-
-// prerendered: HTML build'de Türkçe üretildi; hydrate eşleşsin diye ilk çizim 'tr', tercih edilen dil hemen ardından.
-export function LanguageProvider({ children, prerendered = false }) {
-	const [lang, setLangState] = useState(() => (prerendered ? 'tr' : initialLang()));
+export function LanguageProvider({ children }) {
+	const location = useLocation();
+	const navigate = useNavigate();
+	const lang = langFromPath(location.pathname);
 
 	useEffect(() => {
-		if (prerendered) setLangState(initialLang());
-	}, [prerendered]);
+		const params = new URLSearchParams(location.search);
+		const wanted = params.get('lang');
+		if (!LANGS.includes(wanted)) return;
+		params.delete('lang');
+		const search = params.toString();
+		navigate(
+			{ pathname: localizePath(stripLang(location.pathname), wanted), search: search ? `?${search}` : '', hash: location.hash },
+			{ replace: true },
+		);
+	}, [location, navigate]);
 
 	useEffect(() => {
 		document.documentElement.lang = lang;
-		// Adresle gelen seçim (?lang=en) sonraki sayfalarda da geçerli olsun
-		try {
-			window.localStorage.setItem(STORAGE_KEY, lang);
-		} catch {
-			// yoksay
-		}
 	}, [lang]);
 
-	const setLang = useCallback((next) => {
-		if (!SUPPORTED.includes(next)) return;
-		setLangState(next);
-		try {
-			window.localStorage.setItem(STORAGE_KEY, next);
-		} catch {
-			// yoksay
-		}
-		// Adres çubuğundaki ?lang= ile seçim çelişmesin
-		const url = new URL(window.location.href);
-		if (url.searchParams.has('lang')) {
-			url.searchParams.set('lang', next);
-			window.history.replaceState(null, '', url);
-		}
-	}, []);
+	// Dil değiştirici: aynı sayfanın diğer dildeki adresine gider, seçimi hatırlar (dil önerisi bir daha çıkmasın).
+	const setLang = useCallback(
+		(next) => {
+			if (!LANGS.includes(next)) return;
+			try {
+				window.localStorage.setItem(STORAGE_KEY, next);
+			} catch {
+				// depolama kapalı olabilir
+			}
+			if (next === lang) return;
+			navigate({ pathname: localizePath(stripLang(location.pathname), next), search: location.search, hash: location.hash });
+		},
+		[lang, location, navigate],
+	);
 
 	// Çift dilli değerden geçerli dili seçer: t({ tr: '…', en: '…' })
 	const t = useCallback((value) => (value && typeof value === 'object' && 'tr' in value ? value[lang] ?? value.tr : value), [lang]);
 
-	const value = useMemo(() => ({ lang, setLang, t }), [lang, setLang, t]);
+	// Kökten yazılmış iç adresi geçerli dile çevirir: path('/privacy') → '/en/privacy'
+	const path = useCallback((to) => localizePath(to, lang), [lang]);
+
+	const value = useMemo(() => ({ lang, setLang, t, path }), [lang, setLang, t, path]);
 	return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 

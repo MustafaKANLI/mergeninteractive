@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import Link from '@/components/LocalLink';
 import { Menu, X, Terminal } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
+import { stripLang } from '@/i18n/paths';
 
 const NAV = [
 	{ name: { tr: 'Uygulamalar', en: 'Apps' }, path: '/#apps' },
@@ -46,7 +48,7 @@ function Header() {
 		setIsMenuOpen(false);
 	}, [location]);
 
-	const isActive = (path) => !path.includes('#') && location.pathname === path;
+	const isActive = (path) => !path.includes('#') && stripLang(location.pathname) === path;
 
 	return (
 		<header

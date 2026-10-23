@@ -34,7 +34,8 @@ Alan adı: Vercel → Settings → Domains → `mergeninteractive.com` ve `www` 
   Bir uygulama yeni veri toplamaya başlarsa `privacy.js` içindeki ilgili eki ve sağlayıcı/saklama tablolarını güncelle, `LEGAL_UPDATED` tarihini değiştir.
 - `src/pages/AppDetailPage.jsx` — `/apps/:id` (mergen-studio, recipelink, flicklist, pomotails); SSS bölümü ve JSON-LD.
   Uygulama metinleri aranan ifadeyle yazılır (ör. "tarif kaydetme uygulaması", "dizi takip uygulaması"); mağazada olmayan özellik yazma.
-- `src/i18n/LanguageContext.jsx` — TR/EN; `?lang=en` ile doğrudan İngilizce link.
+- `src/i18n/` — dil adresten gelir: Türkçe kökte (`/privacy`), İngilizce `/en` altında (`/en/privacy`). İç linkleri kökten yaz ve `components/LocalLink` ile ver; İngilizce sayfada öneki o ekler.
+  Otomatik dil yönlendirmesi yok (arama motorları iki dili de görsün); tarayıcı dili farklıysa `LanguageHint` öneri gösterir.
 - `public/apps/*.png` — uygulama ikonları; `public/hero.jpg` — ana sayfa görseli (Unsplash lisansı, sitede barındırılır).
 
 ## Kurallar
@@ -44,4 +45,5 @@ Alan adı: Vercel → Settings → Domains → `mergeninteractive.com` ve `www` 
 
 ## Uygulamaların kullandığı adresler (değiştirme)
 
-`/privacy`, `/kvkk`, `/terms`, `/delete-account`, `/apps/<id>` — `?lang=en` eklenebilir. Bölüm linkleri: `/privacy#uygulamalar`, `/privacy#saklama`.
+`/privacy`, `/kvkk`, `/terms`, `/delete-account`, `/apps/<id>` ve İngilizceleri `/en/...`. Eski `?lang=en` linkleri
+(yayındaki uygulamalar kullanıyor) `vercel.json`'daki 308 yönlendirmesiyle `/en/...`'e gider; o kuralları silme. Bölüm linkleri: `/privacy#uygulamalar`, `/privacy#saklama`.

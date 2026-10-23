@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '@/components/LocalLink';
 import { Code2, Database, Cloud, Smartphone, Globe, Shield } from 'lucide-react';
 import { useLang } from '@/i18n/LanguageContext';
 import { APPS, COMPANY } from '@/content/site';
 import Reveal from '@/components/Reveal';
 import Seo, { ORGANIZATION } from '@/components/Seo';
+import { localizePath } from '@/i18n/paths';
 
 function AboutPage() {
-	const { t } = useLang();
+	const { t, lang } = useLang();
 
 	const technologies = [
 		{ name: 'React Native & Expo', icon: Smartphone },
@@ -26,7 +27,7 @@ function AboutPage() {
 					tr: 'Mergen Interactive, Mustafa Kanlı’nın Antalya’da kurduğu bağımsız mobil uygulama stüdyosudur: RecipeLink, FlickList, Mergen Studio ve PomoTails.',
 					en: 'Mergen Interactive is an independent mobile app studio founded by Mustafa Kanlı in Antalya, Türkiye: RecipeLink, FlickList, Mergen Studio and PomoTails.',
 				})}
-				jsonLd={[{ '@type': 'AboutPage', name: COMPANY.brand, url: `${COMPANY.site}/about`, about: ORGANIZATION }]}
+				jsonLd={[{ '@type': 'AboutPage', name: COMPANY.brand, url: `${COMPANY.site}${localizePath('/about', lang)}`, about: ORGANIZATION }]}
 			/>
 
 			<section className="relative overflow-hidden px-6 pb-16 pt-32">

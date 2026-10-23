@@ -7,8 +7,61 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!en(?:/|$)).+)",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/:path",
+      "permanent": true
+    },
+    {
+      "source": "/en",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "tr"
+        }
+      ],
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/:path+",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "tr"
+        }
+      ],
+      "destination": "/:path+",
+      "permanent": true
+    },
+    {
       "source": "/gizlilik",
       "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/en/gizlilik",
+      "destination": "/en/privacy",
       "permanent": true
     },
     {
@@ -17,8 +70,18 @@
       "permanent": true
     },
     {
+      "source": "/en/privacy-policy",
+      "destination": "/en/privacy",
+      "permanent": true
+    },
+    {
       "source": "/kullanim-kosullari",
       "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/en/kullanim-kosullari",
+      "destination": "/en/terms",
       "permanent": true
     },
     {
@@ -27,8 +90,18 @@
       "permanent": true
     },
     {
+      "source": "/en/eula",
+      "destination": "/en/terms",
+      "permanent": true
+    },
+    {
       "source": "/hesap-silme",
       "destination": "/delete-account",
+      "permanent": true
+    },
+    {
+      "source": "/en/hesap-silme",
+      "destination": "/en/delete-account",
       "permanent": true
     }
   ],
