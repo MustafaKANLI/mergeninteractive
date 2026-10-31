@@ -15,7 +15,7 @@ export const COMPANY = {
 };
 
 // Hukuki metinlerin yürürlük/son güncelleme tarihi.
-export const LEGAL_UPDATED = { tr: '23 Ekim 2026', en: 'October 23, 2026' };
+export const LEGAL_UPDATED = { tr: '31 Ekim 2026', en: 'October 31, 2026' };
 
 // schema.type/category: schema.org SoftwareApplication alanları. free: mağazada ücretsiz (JSON-LD'de fiyat 0 yazılır).
 export const APPS = [
