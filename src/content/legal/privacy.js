@@ -16,7 +16,7 @@ const tr = {
 	summary: {
 		title: 'Kısaca',
 		items: [
-			'Verilerini **satmıyoruz** ve reklam amaçlı takip (başka uygulama ve sitelerde izleme) **yapmıyoruz**.',
+			'Verilerini **satmıyoruz** ve başka uygulama ve sitelerde seni izleyip reklam **göstermiyoruz**. RecipeLink Android\'de reklam kimliğini yalnızca kendi reklamlarımızı ölçmek için kullanıyoruz.',
 			'Yalnızca uygulamanın çalışması, güvenliği ve geliştirilmesi için gereken veriyi işliyoruz.',
 			'Hesabını ve verilerini uygulamanın içinden ya da [Hesap ve veri silme](/delete-account) sayfasından istediğin zaman sildirebilirsin.',
 			'Sağlık, din, siyasi görüş gibi özel nitelikli kişisel veri, konum (GPS) ve rehber bilgisi **toplamıyoruz**.',
@@ -48,6 +48,7 @@ const tr = {
 						['Kullanıcı içeriği', 'Kaydettiğin tarifler ve notlar, listeler, yorumlar, yüklediğin görseller, Mergen Studio briefleri ve tasarımları', 'Sen'],
 						['Uygulama içi işlem ve kullanım', 'Hangi ekranı açtığın, hangi özelliği kullandığın, seri/seviye gibi oyun verileri, izleme geçmişi', 'Hizmetleri kullanman (otomatik)'],
 						['Cihaz ve teknik', 'IP adresi, işletim sistemi, uygulama sürümü, dil, bildirim (push) anahtarı, hata kayıtları, IP\'den tahmin edilen ülke/şehir', 'Cihazın ve sunucularımız (otomatik)'],
+						['Reklam kimliği', 'Android reklam kimliği (AAID; yalnızca RecipeLink Android uygulaması, reklam ölçümü için)', 'Cihazın (otomatik)'],
 						['İletişim', 'Bize yazdığın e-postalar, şikâyet ve destek talepleri', 'Sen'],
 					],
 				),
@@ -55,7 +56,7 @@ const tr = {
 				ul([
 					'KVKK m.6 kapsamındaki **özel nitelikli kişisel veriler** (sağlık, din, ırk, siyasi düşünce, biyometrik veri vb.). Notlarına ya da yorumlarına bu tür bilgiler yazmamanı öneririz.',
 					'Hassas konum (GPS), rehber, mikrofon kaydı, SMS ve arama kayıtları.',
-					'Reklam kimliği (IDFA/AAID) ve uygulamalar arası takip.',
+					'iOS reklam kimliği (IDFA) ve uygulamalar arası takip. Android reklam kimliği yalnızca [6. bölümde](#uygulamalar) yazılan reklam ölçümü için işlenir.',
 					'Ödeme kartı bilgileri (ücretli bir özellik olursa ödeme App Store, Google Play ya da lisanslı ödeme kuruluşu tarafından işlenir; kart bilgisi bize ulaşmaz).',
 				]),
 			],
@@ -84,6 +85,7 @@ const tr = {
 						['Bildirim ve hatırlatmaları göndermek', 'Sözleşmenin ifası (m.5/2-c); cihaz bildirim izni', 'Sözleşme (6/1-b)'],
 						['Güvenlik, kötüye kullanımın ve sahteciliğin önlenmesi, hataların giderilmesi', 'Meşru menfaat (m.5/2-f)', 'Meşru menfaat (6/1-f)'],
 						['Ürün analitiği: hangi özelliklerin işe yaradığını anlamak ve uygulamayı geliştirmek (takma adlı olay verileri)', 'Meşru menfaat (m.5/2-f) — itiraz hakkın saklıdır', 'Meşru menfaat (6/1-f)'],
+						['Reklam ölçümü: kendi reklamlarımızın (Google Ads) kaç kurulum ve kullanım getirdiğini ölçmek (RecipeLink Android, reklam kimliği)', 'Meşru menfaat (m.5/2-f) — itiraz hakkın saklıdır; reklam kimliğini cihaz ayarlarından silebilirsin', 'Meşru menfaat (6/1-f)'],
 						['Yapay zekâ özelliklerini sunmak (RecipeLink akıllı ekleme ve pişirme adımları, Mergen Studio üretimleri)', 'Sözleşmenin ifası (m.5/2-c); RecipeLink\'te ilk kullanımda ayrıca açık rıza (m.5/1)', 'Sözleşme (6/1-b) / Rıza (6/1-a)'],
 						['Topluluk kurallarını uygulamak, şikâyetleri incelemek (FlickList)', 'Sözleşmenin ifası (m.5/2-c), meşru menfaat (m.5/2-f)', 'Sözleşme / Meşru menfaat'],
 						['Destek taleplerini ve KVKK başvurularını yanıtlamak', 'Hukuki yükümlülük (m.5/2-ç), sözleşmenin ifası (m.5/2-c)', 'Yasal yükümlülük (6/1-c)'],
@@ -91,7 +93,7 @@ const tr = {
 						['Bir hakkın tesisi, kullanılması veya korunması (uyuşmazlıklar)', 'm.5/2-e', 'Meşru menfaat (6/1-f)'],
 					],
 				),
-				p('Meşru menfaate dayandığımız işlemlerde, menfaatimizin temel hak ve özgürlüklerine baskın gelip gelmediğini değerlendiririz; analitik verileri takma adlıdır, satılmaz ve reklam için kullanılmaz. Açık rızaya dayanan işlemlerde rızanı istediğin zaman geri alabilirsin; geri alma, önceki işlemleri hukuka aykırı hâle getirmez.'),
+				p('Meşru menfaate dayandığımız işlemlerde, menfaatimizin temel hak ve özgürlüklerine baskın gelip gelmediğini değerlendiririz; analitik verileri takma adlıdır ve satılmaz; reklam kimliği yalnızca kendi reklamlarımızın ölçümü için kullanılır, sana kişiselleştirilmiş reklam göstermek için kullanılmaz. Açık rızaya dayanan işlemlerde rızanı istediğin zaman geri alabilirsin; geri alma, önceki işlemleri hukuka aykırı hâle getirmez.'),
 			],
 		},
 		{
@@ -119,7 +121,8 @@ const tr = {
 					'**Diğer içerik:** yemek planı, dolap ve son kullanma tarihleri, alışveriş listesi ve geçmişi, pişirme süreleri, tabak fotoğrafları (gizli depolama), seri/seviye/rozet gibi oyun verileri. Tarif hatırlatıcıları yalnızca cihazında tutulur.',
 					'**Link önizleme:** kaydettiğin link, başlık ve görseli almak için bizim önizleme sunucumuza gönderilir; sunucu herkese açık sayfayı okur.',
 					'**Teknik:** dil, uygulama sürümü, son etkinlik zamanı, son IP adresi ve IP\'den tahmin edilen ülke (ülke tahmini için IP adresi ipwho.is servisine gönderilir); bildirim anahtarı ve cihaz platformu.',
-					'**Analitik:** PostHog (AB sunucuları) ile hangi özelliklerin kullanıldığına dair olaylar. Hesabını bağladıysan olaylar kullanıcı kimliğinle ilişkilendirilir; e-posta adresin analitiğe gönderilmez. Bunu **Ayarlar › Gizlilik › Kullanım verileri**\'nden kapatabilirsin. Ayrıca Google Firebase Analytics, uygulama açılışı ve ekran görüntüleme gibi temel kullanım bilgilerini otomatik toplar; reklam kimliği toplanmaz.',
+					'**Analitik:** PostHog (AB sunucuları) ile hangi özelliklerin kullanıldığına dair olaylar. Hesabını bağladıysan olaylar kullanıcı kimliğinle ilişkilendirilir; e-posta adresin analitiğe gönderilmez. Bunu **Ayarlar › Gizlilik › Kullanım verileri**\'nden kapatabilirsin. Onboarding\'deki isteğe bağlı "Bizi nereden duydun?" sorusuna verdiğin cevap (ve yazarsan içerik üreticisinin kullanıcı adı) da bu olaylarla birlikte saklanır. Ayrıca Google Firebase Analytics, uygulama açılışı ve ekran görüntüleme gibi temel kullanım bilgilerini otomatik toplar; bu ayar onu kapsamaz.',
+					'**Reklam ölçümü (yalnızca Android):** Firebase Analytics, Android reklam kimliğini (AAID) toplar ve Google Ads ile paylaşır; böylece reklamlarımızın kaç kurulum ve kullanım getirdiğini ölçeriz. Reklam kimliğini sana kişiselleştirilmiş reklam göstermek ya da başka uygulamalarda seni izlemek için kullanmayız. Telefonunun ayarlarından (ör. **Ayarlar › Google › Reklamlar**) reklam kimliğini sıfırlayabilir ya da silebilirsin; sildiğinde toplanmaz. iOS\'ta reklam kimliği (IDFA) toplanmaz ve uygulamalar arası takip yapılmaz.',
 					'**Veri merkezi:** Supabase, Singapur (AWS ap-southeast-1).',
 				]),
 				h3('FlickList'),
@@ -156,13 +159,13 @@ const tr = {
 			id: 'aktarim',
 			title: 'Verileri kimlerle paylaşıyoruz',
 			blocks: [
-				p('Verilerini satmayız ve reklam ağlarıyla paylaşmayız. Hizmetleri sunabilmek için yalnızca aşağıdaki hizmet sağlayıcılarla, gereken ölçüde paylaşırız. Bu sağlayıcılar verileri bizim adımıza ve kendi güvenlik yükümlülükleri çerçevesinde işler.'),
+				p('Verilerini satmayız. RecipeLink Android\'de reklam kimliği yalnızca reklam ölçümü için Google ile paylaşılır; bunun dışında reklam ağlarıyla veri paylaşmayız. Hizmetleri sunabilmek için yalnızca aşağıdaki hizmet sağlayıcılarla, gereken ölçüde paylaşırız. Bu sağlayıcılar verileri bizim adımıza ve kendi güvenlik yükümlülükleri çerçevesinde işler.'),
 				table(
 					['Sağlayıcı', 'Ne için', 'Hangi hizmette', 'Konum'],
 					[
 						['Supabase Inc. (AWS altyapısı)', 'Hesap ve giriş, veritabanı, dosya depolama, sunucu fonksiyonları', 'Tümü', 'Singapur, Almanya, İrlanda (yukarıda uygulama bazında)'],
 						['PostHog Inc.', 'Ürün analitiği', 'RecipeLink, PomoTails', 'AB (Almanya)'],
-						['Google LLC – Firebase', 'Analitik, Android bildirim iletimi', 'PomoTails, RecipeLink', 'ABD ve diğer ülkeler'],
+						['Google LLC – Firebase, Google Ads', 'Analitik, reklam ölçümü (yalnızca RecipeLink Android), Android bildirim iletimi', 'PomoTails, RecipeLink', 'ABD ve diğer ülkeler'],
 						['Apple Inc.', 'Apple ile giriş, iOS bildirim iletimi', 'iOS uygulamaları', 'ABD'],
 						['Google LLC', 'Google ile giriş', 'RecipeLink, FlickList, PomoTails', 'ABD'],
 						['Expo (650 Industries Inc.)', 'Bildirim gönderim altyapısı', 'RecipeLink, PomoTails', 'ABD'],
@@ -279,7 +282,7 @@ const en = {
 	summary: {
 		title: 'In short',
 		items: [
-			'We **do not sell** your data and we **do not track** you across other apps or websites for advertising.',
+			'We **do not sell** your data and we **do not follow** you across other apps or websites to show you ads. In RecipeLink for Android we use the advertising ID only to measure our own ads.',
 			'We only process what is needed to run, secure and improve the apps.',
 			'You can delete your account and data at any time in the app or via the [Account & data deletion](/delete-account) page.',
 			'We **do not collect** special categories of data (health, religion, political opinions etc.), precise location (GPS) or contacts.',
@@ -311,6 +314,7 @@ const en = {
 						['User content', 'Recipes and notes you save, lists, comments, images you upload, Mergen Studio briefs and designs', 'You'],
 						['In-app activity and usage', 'Screens you open, features you use, game data such as streaks and levels, watch history', 'Your use of the Services (automatic)'],
 						['Device and technical', 'IP address, operating system, app version, language, push notification token, error logs, country/city estimated from IP', 'Your device and our servers (automatic)'],
+						['Advertising ID', 'Android advertising ID (AAID; RecipeLink Android app only, for ad measurement)', 'Your device (automatic)'],
 						['Communications', 'Emails you send us, reports and support requests', 'You'],
 					],
 				),
@@ -318,7 +322,7 @@ const en = {
 				ul([
 					'**Special categories of personal data** under Article 6 KVKK / Article 9 GDPR (health, religion, ethnicity, political opinions, biometric data etc.). Please avoid writing such information in your notes or comments.',
 					'Precise location (GPS), contacts, microphone recordings, SMS or call logs.',
-					'Advertising identifiers (IDFA/AAID) or cross-app tracking.',
+					'The iOS advertising identifier (IDFA) or cross-app tracking. The Android advertising ID is processed only for the ad measurement described in [section 6](#uygulamalar).',
 					'Payment card details (if a paid feature is offered, payment is handled by the App Store, Google Play or a licensed payment provider; card details never reach us).',
 				]),
 			],
@@ -347,6 +351,7 @@ const en = {
 						['Sending notifications and reminders', 'Performance of a contract (Art. 5/2-c); device notification permission', 'Contract (6(1)(b))'],
 						['Security, preventing abuse and fraud, fixing errors', 'Legitimate interest (Art. 5/2-f)', 'Legitimate interest (6(1)(f))'],
 						['Product analytics: understanding which features work and improving the apps (pseudonymous event data)', 'Legitimate interest (Art. 5/2-f) — you may object', 'Legitimate interest (6(1)(f))'],
+						['Ad measurement: measuring how many installs and how much use our own ads (Google Ads) bring (RecipeLink Android, advertising ID)', 'Legitimate interest (Art. 5/2-f) — you may object; you can delete the advertising ID in your device settings', 'Legitimate interest (6(1)(f))'],
 						['Providing AI features (RecipeLink Smart Add and cooking steps, Mergen Studio generation)', 'Performance of a contract (Art. 5/2-c); plus explicit consent before first use in RecipeLink (Art. 5/1)', 'Contract (6(1)(b)) / Consent (6(1)(a))'],
 						['Enforcing community rules and reviewing reports (FlickList)', 'Contract (Art. 5/2-c), legitimate interest (Art. 5/2-f)', 'Contract / Legitimate interest'],
 						['Answering support requests and data protection requests', 'Legal obligation (Art. 5/2-ç), contract (Art. 5/2-c)', 'Legal obligation (6(1)(c))'],
@@ -354,7 +359,7 @@ const en = {
 						['Establishing, exercising or defending legal claims', 'Art. 5/2-e', 'Legitimate interest (6(1)(f))'],
 					],
 				),
-				p('Where we rely on legitimate interest, we assess that it does not override your fundamental rights and freedoms; analytics data is pseudonymous, never sold and never used for advertising. Where we rely on consent, you can withdraw it at any time; this does not affect processing carried out before.'),
+				p('Where we rely on legitimate interest, we assess that it does not override your fundamental rights and freedoms; analytics data is pseudonymous and never sold; the advertising ID is used only to measure our own ads, never to show you personalised ads. Where we rely on consent, you can withdraw it at any time; this does not affect processing carried out before.'),
 			],
 		},
 		{
@@ -382,7 +387,8 @@ const en = {
 					'**Other content:** meal plan, pantry and expiry dates, shopping list and history, cooking times, plate photos (private storage), game data such as streaks, levels and badges. Recipe reminders are stored only on your device.',
 					'**Link preview:** the link you save is sent to our preview server to fetch its title and image; the server reads the public page.',
 					'**Technical:** language, app version, last activity time, last IP address and the country estimated from it (the IP address is sent to the ipwho.is service for this estimate); push token and device platform.',
-					'**Analytics:** PostHog (EU servers) events about which features are used. If you linked your account, events are associated with your user ID; your email address is not sent to analytics. You can turn this off in **Settings › Privacy › Usage data**. Google Firebase Analytics also automatically collects basic usage information such as app opens and screen views; advertising identifiers are not collected.',
+					'**Analytics:** PostHog (EU servers) events about which features are used. If you linked your account, events are associated with your user ID; your email address is not sent to analytics. You can turn this off in **Settings › Privacy › Usage data**. Your answer to the optional "How did you hear about us?" question during onboarding (and a creator\'s username, if you type one) is stored with these events too. Google Firebase Analytics also automatically collects basic usage information such as app opens and screen views; that setting does not cover it.',
+					'**Ad measurement (Android only):** Firebase Analytics collects the Android advertising ID (AAID) and shares it with Google Ads so we can measure how many installs and how much use our ads bring. We do not use the advertising ID to show you personalised ads or to follow you across other apps. You can reset or delete it in your phone\'s settings (e.g. **Settings › Google › Ads**); once deleted, it is not collected. On iOS the advertising ID (IDFA) is not collected and there is no cross-app tracking.',
 					'**Data centre:** Supabase, Singapore (AWS ap-southeast-1).',
 				]),
 				h3('FlickList'),
@@ -419,13 +425,13 @@ const en = {
 			id: 'aktarim',
 			title: 'Who we share data with',
 			blocks: [
-				p('We do not sell your data or share it with ad networks. We share it only with the service providers below, to the extent needed to provide the Services. They process data on our behalf and under their own security obligations.'),
+				p('We do not sell your data. In RecipeLink for Android the advertising ID is shared with Google only for ad measurement; apart from that we do not share data with ad networks. We share it only with the service providers below, to the extent needed to provide the Services. They process data on our behalf and under their own security obligations.'),
 				table(
 					['Provider', 'Purpose', 'Service', 'Location'],
 					[
 						['Supabase Inc. (AWS infrastructure)', 'Accounts and sign-in, database, file storage, server functions', 'All', 'Singapore, Germany, Ireland (per app above)'],
 						['PostHog Inc.', 'Product analytics', 'RecipeLink, PomoTails', 'EU (Germany)'],
-						['Google LLC – Firebase', 'Analytics, Android push delivery', 'PomoTails, RecipeLink', 'USA and other countries'],
+						['Google LLC – Firebase, Google Ads', 'Analytics, ad measurement (RecipeLink Android only), Android push delivery', 'PomoTails, RecipeLink', 'USA and other countries'],
 						['Apple Inc.', 'Sign in with Apple, iOS push delivery', 'iOS apps', 'USA'],
 						['Google LLC', 'Sign in with Google', 'RecipeLink, FlickList, PomoTails', 'USA'],
 						['Expo (650 Industries Inc.)', 'Push delivery infrastructure', 'RecipeLink, PomoTails', 'USA'],

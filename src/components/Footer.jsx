@@ -92,7 +92,7 @@ function Footer() {
 					<p>
 						© {year} {COMPANY.brand} · {COMPANY.controller}
 					</p>
-					<p>{t({ tr: 'Verilerini satmıyoruz, reklam amaçlı takip etmiyoruz.', en: 'We do not sell your data or track you for advertising.' })}</p>
+					<p>{t({ tr: 'Verilerini satmıyoruz, başka uygulama ve sitelerde seni izlemiyoruz.', en: 'We do not sell your data or follow you across other apps and websites.' })}</p>
 				</div>
 			</div>
 		</footer>
